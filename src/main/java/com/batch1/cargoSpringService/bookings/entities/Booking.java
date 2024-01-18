@@ -1,12 +1,18 @@
 package com.batch1.cargoSpringService.bookings.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import com.batch1.cargoSpringService.cargos.entities.CargoInfo;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -34,4 +40,7 @@ public class Booking {
 
     @Column(name = "container_type")
     private String containerType;
+
+    @OneToMany(mappedBy = "bookingId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<CargoInfo> cargoInfo;
 }

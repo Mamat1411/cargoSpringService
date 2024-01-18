@@ -123,7 +123,7 @@ public class BookingController {
         Map<String, Object> resultMap = new HashMap<>();
         try {
             Booking booking = bookingService.getBookingById(id);
-            bookingService.deleteBooking(booking.getId());
+            bookingService.deleteBooking(booking.getBookingId());
 
             resultMap.put("Status", "200");
             resultMap.put("Message", "success");
