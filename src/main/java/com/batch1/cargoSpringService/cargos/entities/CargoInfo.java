@@ -1,15 +1,19 @@
 package com.batch1.cargoSpringService.cargos.entities;
 
 import com.batch1.cargoSpringService.bookings.entities.Booking;
+import com.batch1.cargoSpringService.vessels.entities.VesselInfo;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -50,4 +54,7 @@ public class CargoInfo {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_booking_id", referencedColumnName = "booking_id")
     private Booking bookingId;
+
+    @OneToOne(mappedBy = "cargoId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private VesselInfo vesselInfo;
 }
